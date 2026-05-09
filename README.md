@@ -4,5 +4,9 @@
 2. Package Installation
 
 ```Bash
-npm install @mui/material@^7.0.0 @emotion/react @emotion/styled axios sonner react-router-dom @reduxjs/toolkit react-redux react-icons prop-types motion
+npm install @mui/material@^7.0.0 @emotion/react @emotion/styled axios sonner react-router-dom @reduxjs/toolkit react-redux react-icons prop-types motion tailwindcss @tailwindcss/vite
+```
+
+```Bash
+npm install -D sass
 ```

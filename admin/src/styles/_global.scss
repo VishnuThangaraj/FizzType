@@ -1,0 +1,54 @@
+@use "./colors" as *;
+@use "./variables" as *;
+
+* {
+  font-family: "Roboto Mono", "JetBrains Mono", monospace;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: $primary-text-color;
+}
+
+body,
+.primary-bg {
+  background-color: $primary-background;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Chrome/Safari */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+// Background Colors
+.bg-accent {
+  background-color: $accent-color;
+}
+.bg-primary {
+  background-color: $primary-text-color;
+}
+.bg-secondary {
+  background-color: $secondary-text-color;
+}
+
+// Text Colors
+.text-accent {
+  color: $accent-color;
+}
+.text-primary {
+  color: $primary-text-color;
+}
+.text-secondary {
+  color: $secondary-text-color;
+}
+.text-backgound {
+  color: $primary-background;
+}
