@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useCallback, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoMdMail } from "react-icons/io";
 import { FaCodeBranch, FaDonate, FaPalette } from "react-icons/fa";
@@ -10,55 +10,52 @@ import {
 } from "@/config/footerConfig";
 import { app_version } from "@/config/appConfig";
 
-const baseStyle = `${footerSectionStyle} flex items-center gap-2`;
+const baseStyle = `${footerSectionStyle} flex items-center gap-1`;
+const secondaryStyle =
+  "inline-flex items-center justify-center px-1 rounded-xs text-[10px] bg-primary text-backgound mx-1";
 
-const FooterItem = ({ icon: Icon, label, onClick }) => (
+const modalReducer = (state, action) => ({ ...state, [action]: true });
+const initialModalState = {
+  theme: false,
+  support: false,
+  contact: false,
+  version: false,
+};
+
+const FooterItem = memo(({ icon: Icon, label, onClick }) => (
   <div className={baseStyle} onClick={onClick}>
     <Icon className="text-md" />
     <span>{label}</span>
   </div>
-);
+));
+FooterItem.displayName = "FooterItem";
 
 const Footer = () => {
   const navigate = useNavigate();
-  const [openTheme, setOpenTheme] = useState(false);
-  const [openDonate, setOpenDonate] = useState(false);
-  const [openContact, setOpenContact] = useState(false);
-  const [openVersion, setOpenVersion] = useState(false);
+  const [, openModal] = useReducer(modalReducer, initialModalState);
+
+  const handleContact = useCallback(() => openModal("contact"), []);
+  const handleSupport = useCallback(() => openModal("support"), []);
+  const handleTheme = useCallback(() => openModal("theme"), []);
+  const handleVersion = useCallback(() => openModal("version"), []);
 
   return (
-    <div className="flex flex-col gap-7 text-sm pb-7">
-      <div className="flex flex-col justify-center text-center gap-2">
+    <div className="flex flex-col gap-7 text-[12px] pb-2">
+      <div className="flex flex-col justify-center text-center gap-1.5">
         <div>
-          <span className="inline-flex items-center justify-center px-1 rounded-xs text-xs bg-primary text-backgound mx-3">
-            tab &gt; enter
-          </span>{" "}
-          - restart test
+          <span className={secondaryStyle}>tab &gt; enter</span> - restart test
         </div>
         <div>
-          <span className="inline-flex items-center justify-center px-1 rounded-xs text-xs bg-primary text-backgound mx-3">
-            escape
-          </span>{" "}
-          or{" "}
-          <span className="inline-flex items-center justify-center px-1 rounded-xs text-xs bg-primary text-backgound mx-3">
-            ctrl + shift + p
-          </span>
-          - command line
+          <span className={secondaryStyle}>escape</span> or{" "}
+          <span className={secondaryStyle}>ctrl + shift + p</span>- command line
         </div>
       </div>
+
       <div className="flex justify-between items-center">
         {/* Left Footer */}
         <div className="flex items-center">
-          <FooterItem
-            icon={IoMdMail}
-            label="contact"
-            onClick={() => setOpenContact(true)}
-          />
-          <FooterItem
-            icon={FaDonate}
-            label="donate"
-            onClick={() => setOpenDonate(true)}
-          />
+          <FooterItem icon={IoMdMail} label="contact" onClick={handleContact} />
+          <FooterItem icon={FaDonate} label="support" onClick={handleSupport} />
           {footerSocials.map((item, index) => (
             <FooterItem
               key={`footer_social_${index}`}
@@ -82,12 +79,12 @@ const Footer = () => {
           <FooterItem
             icon={FaPalette}
             label="serika dark"
-            onClick={() => setOpenTheme(true)}
+            onClick={handleTheme}
           />
           <FooterItem
             icon={FaCodeBranch}
             label={app_version}
-            onClick={() => setOpenVersion(true)}
+            onClick={handleVersion}
           />
         </div>
       </div>

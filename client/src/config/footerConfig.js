@@ -2,7 +2,7 @@ import { BsDiscord } from "react-icons/bs";
 import { IoLogoGithub, IoLogoTwitter } from "react-icons/io5";
 import { FaFileContract, FaLock, FaShieldAlt } from "react-icons/fa";
 
-export const footerSectionStyle = "px-2 hover:cursor-pointer hover:text-white";
+export const footerSectionStyle = "px-1 hover:cursor-pointer hover:text-white";
 
 export const footerSocials = [
   {
