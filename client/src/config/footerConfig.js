@@ -1,33 +1,33 @@
-import { BsDiscord } from "react-icons/bs";
-import { IoLogoGithub, IoLogoTwitter } from "react-icons/io5";
-import { FaFileContract, FaLock, FaShieldAlt } from "react-icons/fa";
+import {
+  FaCode,
+  FaLock,
+  FaTwitter,
+  FaDiscord,
+  FaShieldAlt,
+  FaFileContract,
+} from "react-icons/fa";
 
 export const footerSectionStyle = "px-1 hover:cursor-pointer hover:text-white";
 
 export const footerSocials = [
   {
     title: "github",
-    icon: IoLogoGithub,
+    icon: FaCode,
     location: "https://github.com/VishnuThangaraj",
   },
   {
     title: "discord",
-    icon: BsDiscord,
+    icon: FaDiscord,
     location: "https://github.com/VishnuThangaraj",
   },
   {
     title: "twitter",
-    icon: IoLogoTwitter,
+    icon: FaTwitter,
     location: "https://github.com/VishnuThangaraj",
   },
 ];
 
 export const footerLegals = [
-  {
-    title: "terms",
-    icon: FaFileContract,
-    location: "/terms-of-service",
-  },
   {
     title: "security",
     icon: FaShieldAlt,
@@ -37,5 +37,10 @@ export const footerLegals = [
     title: "privacy",
     icon: FaLock,
     location: "/privacy-policy",
+  },
+  {
+    title: "terms",
+    icon: FaFileContract,
+    location: "/terms-of-service",
   },
 ];

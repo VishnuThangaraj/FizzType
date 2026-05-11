@@ -1,7 +1,6 @@
 import { memo, useCallback, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-import { IoMdMail } from "react-icons/io";
-import { FaCodeBranch, FaDonate, FaPalette } from "react-icons/fa";
+import { FaCodeBranch, FaDonate, FaPalette, FaEnvelope } from "react-icons/fa";
 
 import {
   footerSocials,
@@ -10,7 +9,7 @@ import {
 } from "@/config/footerConfig";
 import { app_version } from "@/config/appConfig";
 
-const baseStyle = `${footerSectionStyle} flex items-center gap-1`;
+const baseStyle = `${footerSectionStyle} flex items-center gap-1 whitespace-nowrap`;
 const secondaryStyle =
   "inline-flex items-center justify-center px-1 rounded-xs text-[10px] bg-primary text-backgound mx-1";
 
@@ -24,7 +23,7 @@ const initialModalState = {
 
 const FooterItem = memo(({ icon: Icon, label, onClick }) => (
   <div className={baseStyle} onClick={onClick}>
-    <Icon className="text-md" />
+    <Icon className="text-md shrink-0" />
     <span>{label}</span>
   </div>
 ));
@@ -51,10 +50,14 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center">
-        {/* Left Footer */}
-        <div className="flex items-center">
-          <FooterItem icon={IoMdMail} label="contact" onClick={handleContact} />
+      <div className="flex justify-between items-start">
+        {/* Left Footer  */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 lg:gap-0">
+          <FooterItem
+            icon={FaEnvelope}
+            label="contact"
+            onClick={handleContact}
+          />
           <FooterItem icon={FaDonate} label="support" onClick={handleSupport} />
           {footerSocials.map((item, index) => (
             <FooterItem
@@ -75,7 +78,7 @@ const Footer = () => {
         </div>
 
         {/* Right Footer */}
-        <div className="flex justify-between items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-1">
           <FooterItem
             icon={FaPalette}
             label="serika dark"
