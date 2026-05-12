@@ -1,13 +1,14 @@
-import { memo, useCallback, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
+import { memo, useCallback, useReducer } from "react";
 import { FaCodeBranch, FaDonate, FaPalette, FaEnvelope } from "react-icons/fa";
 
 import {
   footerSocials,
   footerLegals,
   footerSectionStyle,
-} from "@/config/footerConfig";
+} from "@/components/footer/config/footerConfig";
 import { app_version } from "@/config/appConfig";
+import { TbFileUnknownFilled } from "react-icons/tb";
 
 const baseStyle = `${footerSectionStyle} flex items-center gap-1 whitespace-nowrap`;
 const secondaryStyle =
@@ -54,15 +55,19 @@ const Footer = () => {
         {/* Left Footer  */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 lg:gap-0">
           <FooterItem
-            icon={FaEnvelope}
+            icon={FaEnvelope ?? TbFileUnknownFilled}
             label="contact"
             onClick={handleContact}
           />
-          <FooterItem icon={FaDonate} label="support" onClick={handleSupport} />
+          <FooterItem
+            icon={FaDonate ?? TbFileUnknownFilled}
+            label="support"
+            onClick={handleSupport}
+          />
           {footerSocials.map((item, index) => (
             <FooterItem
               key={`footer_social_${index}`}
-              icon={item.icon}
+              icon={item.icon ?? TbFileUnknownFilled}
               label={item.title}
               onClick={() => window.open(item.location, "_blank")}
             />
@@ -70,7 +75,7 @@ const Footer = () => {
           {footerLegals.map((item, index) => (
             <FooterItem
               key={`footer_legal_${index}`}
-              icon={item.icon}
+              icon={item.icon ?? TbFileUnknownFilled}
               label={item.title}
               onClick={() => navigate(item.location)}
             />

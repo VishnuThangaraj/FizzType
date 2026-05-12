@@ -10,7 +10,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  color: $primary-text-color;
+  color: $primary-color;
 }
 
 body,
@@ -33,10 +33,13 @@ body,
   background-color: $accent-color;
 }
 .bg-primary {
-  background-color: $primary-text-color;
+  background-color: $primary-color;
 }
 .bg-secondary {
-  background-color: $secondary-text-color;
+  background-color: $secondary-color;
+}
+.bg-tertiary {
+  background-color: $tertiary-color;
 }
 
 // Text Colors
@@ -44,11 +47,19 @@ body,
   color: $accent-color;
 }
 .text-primary {
-  color: $primary-text-color;
+  color: $primary-color;
 }
 .text-secondary {
-  color: $secondary-text-color;
+  color: $secondary-color;
 }
 .text-backgound {
   color: $primary-background;
+}
+.text-tertiary {
+  color: $tertiary-color;
+}
+
+.logo-text {
+  font-family: "Nunito Sans", sans-serif;
+  letter-spacing: 1.5px;
 }
