@@ -58,8 +58,19 @@ body,
 .text-tertiary {
   color: $tertiary-color;
 }
+.text-quaternary {
+  color: $quaternary-color;
+}
 
 .logo-text {
   font-family: "Nunito Sans", sans-serif;
   letter-spacing: 1.5px;
+}
+
+// Border Colors
+.border-primary {
+  border-color: $primary-color;
+}
+.focus-border-primary:focus {
+  border-color: $primary-color;
 }

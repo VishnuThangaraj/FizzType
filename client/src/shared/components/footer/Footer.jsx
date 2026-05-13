@@ -5,8 +5,8 @@ import { FaCodeBranch, FaDonate, FaPalette, FaEnvelope } from "react-icons/fa";
 import {
   footerSocials,
   footerLegals,
-  footerSectionStyle,
-} from "@/components/footer/config/footerConfig";
+} from "@/shared/components/footer/config/footerConfig";
+import { footerSectionStyle } from "@/shared/components/footer/styles/footerStyles";
 import { app_version } from "@/config/appConfig";
 import { TbFileUnknownFilled } from "react-icons/tb";
 

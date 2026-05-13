@@ -7,8 +7,6 @@ import {
   FaFileContract,
 } from "react-icons/fa";
 
-export const footerSectionStyle = "px-1 hover:cursor-pointer hover:text-white";
-
 export const footerSocials = [
   {
     title: "github",

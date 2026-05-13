@@ -17,9 +17,9 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-        @use "@/styles/colors" as *;
-          @use "@/styles/global" as *;
-          @use "@/styles/variables" as *;
+        @use "@/shared/styles/colors" as *;
+          @use "@/shared/styles/global" as *;
+          @use "@/shared/styles/variables" as *;
         `,
       },
     },
