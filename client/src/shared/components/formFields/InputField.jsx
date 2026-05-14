@@ -1,6 +1,12 @@
-import { InputFieldBaseStyles } from "@/shared/components/formFields/styles/InputFieldStyles";
+import { InputFieldBaseStyles } from "@/shared/components/formFields/styles/formFieldsStyle";
 
-const InputField = ({ field, value, onChange, disabled = false, style = "w-full" }) => {
+const InputField = ({
+  field,
+  value,
+  onChange,
+  disabled = false,
+  style = "w-full",
+}) => {
   return (
     <div className={style}>
       <input
@@ -9,7 +15,7 @@ const InputField = ({ field, value, onChange, disabled = false, style = "w-full"
         onChange={(e) => onChange(field.name, e.target.value)}
         disabled={disabled}
         placeholder={field?.placeholder}
-        className={`${InputFieldBaseStyles} w-full`}
+        className={`${InputFieldBaseStyles} text-quaternary w-full`}
       />
     </div>
   );

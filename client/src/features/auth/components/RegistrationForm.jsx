@@ -4,9 +4,11 @@ import { FaUserPlus } from "react-icons/fa";
 import { AuthHeaderStyle } from "@/features/auth/styles/authStyles";
 import InputField from "@/shared/components/formFields/InputField";
 
+import Button from "@/shared/components/formFields/Button";
+
 import AuthRegisterFields from "@/features/auth/constants/registerFields";
-import InitialRegistrationState from "@/features/auth/state/initialRegistrationState";
 import RegistrationRules from "@/features/auth/validation/registrationRules";
+import InitialRegistrationState from "@/features/auth/state/initialRegistrationState";
 
 import { handleChangeValidation } from "@/shared/utils/FormFieldValidation";
 
@@ -40,6 +42,9 @@ const RegistrationForm = () => {
           />
         );
       })}
+      <Button type="submit" icon={FaUserPlus} className="text-primary mt-2">
+        sign up
+      </Button>
     </div>
   );
 };

@@ -71,6 +71,25 @@ body,
 .border-primary {
   border-color: $primary-color;
 }
+.border-accent {
+  border-color: $accent-color;
+}
 .focus-border-primary:focus {
   border-color: $primary-color;
 }
+
+.input-button:hover {
+  color: $primary-color;
+  background-color: $secondary-color;
+}
+
+// Transitions
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duration-200 {
+  transition-duration: 200ms;
+}
+

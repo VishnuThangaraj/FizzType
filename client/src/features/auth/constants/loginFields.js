@@ -1,4 +1,6 @@
-const AuthLoginFields = [
+import { FaGoogle, FaGithub } from "react-icons/fa";
+
+export const AuthLoginFields = [
   {
     name: "email",
     placeholder: "email",
@@ -10,4 +12,13 @@ const AuthLoginFields = [
   },
 ];
 
-export default AuthLoginFields;
+export const ExternalLoginFields = [
+  {
+    name: "google",
+    icon: FaGoogle,
+  },
+  {
+    name: "github",
+    icon: FaGithub,
+  },
+];
