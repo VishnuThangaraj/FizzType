@@ -71,6 +71,18 @@ body,
 .border-primary {
   border-color: $primary-color;
 }
+.border-secondary {
+  border-color: $secondary-background;
+}
+.border-secondary-text {
+  border-color: $secondary-color;
+}
+.border-tertiary {
+  border-color: $tertiary-color;
+}
+.border-quaternary {
+  border-color: $quaternary-color;
+}
 .border-accent {
   border-color: $accent-color;
 }
@@ -92,4 +104,3 @@ body,
 .duration-200 {
   transition-duration: 200ms;
 }
-

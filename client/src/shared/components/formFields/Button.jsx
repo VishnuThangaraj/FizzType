@@ -31,7 +31,7 @@ const Button = forwardRef(
         {...props}
       >
         {Icon && <Icon className="text-xl" />}
-        <span>{children || name || ""}</span>
+        {children || (name ? <span>{name}</span> : "")}
       </button>
     );
   },

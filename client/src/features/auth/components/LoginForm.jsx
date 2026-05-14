@@ -41,7 +41,7 @@ const LoginForm = () => {
             <Button
               key={field.name}
               icon={field.icon}
-              className="py-2 text-quaternary"
+              className="py-2 text-quaternary  justify-center"
             />
           );
         })}
@@ -74,7 +74,11 @@ const LoginForm = () => {
           onChange={(val) => handleChange("rememberMe", val)}
         />
       </div>
-      <Button type="submit" icon={FaSignInAlt} className="text-primary">
+      <Button
+        type="submit"
+        icon={FaSignInAlt}
+        className="text-primary justify-center"
+      >
         sign in
       </Button>
       <div className="text-right w-full">

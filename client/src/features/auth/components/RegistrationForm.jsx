@@ -42,7 +42,11 @@ const RegistrationForm = () => {
           />
         );
       })}
-      <Button type="submit" icon={FaUserPlus} className="text-primary mt-2">
+      <Button
+        type="submit"
+        icon={FaUserPlus}
+        className="text-primary justify-center mt-2"
+      >
         sign up
       </Button>
     </div>

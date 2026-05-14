@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { memo, useCallback, useReducer } from "react";
 import { FaCodeBranch, FaDonate, FaPalette, FaEnvelope } from "react-icons/fa";
-
 import {
   footerSocials,
   footerLegals,
@@ -9,12 +8,14 @@ import {
 import { footerSectionStyle } from "@/shared/components/footer/styles/footerStyles";
 import { app_version } from "@/config/appConfig";
 import { TbFileUnknownFilled } from "react-icons/tb";
+import ContactModal from "@/shared/components/modal/ContactModal";
+import SupportModal from "@/shared/components/modal/SupportModal";
 
 const baseStyle = `${footerSectionStyle} flex items-center gap-1 whitespace-nowrap`;
 const secondaryStyle =
   "inline-flex items-center justify-center px-1 rounded-xs text-[10px] bg-primary text-backgound mx-1";
 
-const modalReducer = (state, action) => ({ ...state, [action]: true });
+const modalReducer = (state, action) => ({ ...state, ...action });
 const initialModalState = {
   theme: false,
   support: false,
@@ -32,12 +33,12 @@ FooterItem.displayName = "FooterItem";
 
 const Footer = () => {
   const navigate = useNavigate();
-  const [, openModal] = useReducer(modalReducer, initialModalState);
+  const [modals, setModals] = useReducer(modalReducer, initialModalState);
 
-  const handleContact = useCallback(() => openModal("contact"), []);
-  const handleSupport = useCallback(() => openModal("support"), []);
-  const handleTheme = useCallback(() => openModal("theme"), []);
-  const handleVersion = useCallback(() => openModal("version"), []);
+  const handleContact = useCallback(() => setModals({ contact: true }), []);
+  const handleSupport = useCallback(() => setModals({ support: true }), []);
+  const handleTheme = useCallback(() => setModals({ theme: true }), []);
+  const handleVersion = useCallback(() => setModals({ version: true }), []);
 
   return (
     <div className="flex flex-col gap-7 text-[12px] pb-2">
@@ -96,6 +97,16 @@ const Footer = () => {
           />
         </div>
       </div>
+
+      {/* Modals */}
+      <ContactModal
+        isOpen={modals.contact}
+        onClose={() => setModals({ contact: false })}
+      />
+      <SupportModal
+        isOpen={modals.support}
+        onClose={() => setModals({ support: false })}
+      />
     </div>
   );
 };
