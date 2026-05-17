@@ -3,7 +3,7 @@ import RegistrationForm from "@/features/auth/components/RegistrationForm";
 
 const AuthPage = () => {
   return (
-    <div className="flex justify-around items-center h-full">
+    <div className="flex justify-around items-center h-full flex-1">
       <RegistrationForm />
       <LoginForm />
     </div>

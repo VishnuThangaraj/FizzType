@@ -2,7 +2,7 @@ import {
   typingModes,
   textModifiers,
   typingDuration,
-} from "@/components/typing/config/toolBarConfig";
+} from "@/features/typing/config/toolBarConfig";
 
 import { FaTools } from "react-icons/fa";
 import { TbFileUnknownFilled } from "react-icons/tb";
