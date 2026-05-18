@@ -8,7 +8,14 @@ import {
 } from "react-icons/fa";
 import { memo } from "react";
 
-const baseStyle = "";
+import {
+  navbarLeftIcons,
+  navbarRightIcons,
+} from "@/shared/components/navbar/config/navbarConfig";
+
+import { useNavigate } from "react-router-dom";
+
+const baseStyle = "cursor-pointer btn-colored-hover";
 
 const NavbarIcons = memo(
   ({ icon: Icon, fontSize = "18px", onClick = () => {} }) => (
@@ -19,6 +26,8 @@ const NavbarIcons = memo(
 );
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex items-center justify-between">
       {/* Left Navbar Section */}
@@ -30,16 +39,29 @@ const Navbar = () => {
           </span>
         </div>
         <div className="flex justify-between gap-7 pt-4">
-          <NavbarIcons icon={FaKeyboard} fontSize="20px" />
-          <NavbarIcons icon={FaCrown} fontSize="20px" />
-          <NavbarIcons icon={FaInfo} />
-          <NavbarIcons icon={FaCog} />
+          {navbarLeftIcons.map((item) => {
+            const Icon = item.icon;
+            return (
+              <NavbarIcons
+                icon={Icon}
+                fontSize={item.fontSize || "18px"}
+                onClick={() => {
+                  navigate(`${item.location}`);
+                }}
+              />
+            );
+          })}
         </div>
       </div>
       {/* Right Navbar Section */}
       <div className="flex justify-between gap-7  pt-4">
         <NavbarIcons icon={FaBell} />
-        <NavbarIcons icon={FaRegUser} />
+        <NavbarIcons
+          icon={FaRegUser}
+          onClick={() => {
+            navigate("/login");
+          }}
+        />
       </div>
     </div>
   );

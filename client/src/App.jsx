@@ -9,9 +9,9 @@ import "./App.scss";
 
 // Lazy Loading pages
 const AuthPage = lazy(() => import("@/features/auth/pages/AuthPage"));
-// const TermsOfService = lazy(
-//   () => import("@/features/legal/pages/TermsOfService"),
-// );
+const TermsOfService = lazy(
+  () => import("@/features/legal/pages/TermsOfService"),
+);
 const TypingWorkspace = lazy(
   () => import("@/features/typing/pages/TypingWorkspace"),
 );
@@ -19,14 +19,25 @@ const TypingWorkspace = lazy(
 const App = () => {
   return (
     <Routes>
+      {/* Terms of Service — no Navbar or Footer */}
+      <Route
+        path="/terms-of-service"
+        element={
+          <div className="min-h-screen flex flex-col px-3 md:px-6 lg:px-10 pt-8">
+            <Suspense fallback={<Loader />}>
+              <TermsOfService />
+            </Suspense>
+          </div>
+        }
+      />
+
+      {/* Main layout — all other routes */}
       <Route
         path="/*"
         element={
           <div className="min-h-screen flex flex-col px-3 md:px-18 lg:px-28 pt-8">
-            {/* Navbar */}
             <Navbar />
 
-            {/* Main Content */}
             <main className="flex-1 flex flex-col w-full">
               <Suspense fallback={<Loader />}>
                 <Routes>
@@ -36,15 +47,11 @@ const App = () => {
               </Suspense>
             </main>
 
-            {/* Footer */}
             <Footer />
           </div>
         }
       />
     </Routes>
-    // <div className="min-h-screen flex flex-col px-3 md:px-6 lg:px-10 pt-8">
-    //   <TermsOfService />
-    // </div>
   );
 };
 
