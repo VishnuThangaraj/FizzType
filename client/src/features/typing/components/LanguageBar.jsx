@@ -2,8 +2,10 @@ import { FaGlobeAmericas } from "react-icons/fa";
 
 const LanguageBar = () => {
   return (
-    <div className="flex btn-colored-hover justify-center items-center gap-4 cursor-pointer mt-10">
-      <FaGlobeAmericas /> english
+    <div className="flex justify-center">
+      <div className="flex justify-center btn-colored-hover items-center gap-4 cursor-pointer">
+        <FaGlobeAmericas /> english
+      </div>
     </div>
   );
 };

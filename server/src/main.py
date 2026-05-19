@@ -3,8 +3,11 @@ from os import getenv
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from contextlib import asynccontextmanager
+
 from src.config.corsConfig import setup_cors
 from src.config.dbConfig import connect_db, close_db
+
+from src.routers import authRoutes
 
 load_dotenv()
 
@@ -27,6 +30,9 @@ def root():
         'message': 'TypeFizz Server Running...',
         'version': '0.0.1',
     }
+
+# Routes
+app.include_router(authRoutes.router)
 
 if __name__ == "__main__":
     port = int(getenv("PORT"))

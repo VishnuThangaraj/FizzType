@@ -1,11 +1,3 @@
-import {
-  FaBell,
-  FaRegUser,
-  FaKeyboard,
-  FaCrown,
-  FaInfo,
-  FaCog,
-} from "react-icons/fa";
 import { memo } from "react";
 
 import {
@@ -53,15 +45,21 @@ const Navbar = () => {
           })}
         </div>
       </div>
+
       {/* Right Navbar Section */}
       <div className="flex justify-between gap-7  pt-4">
-        <NavbarIcons icon={FaBell} />
-        <NavbarIcons
-          icon={FaRegUser}
-          onClick={() => {
-            navigate("/login");
-          }}
-        />
+        {navbarRightIcons.map((item) => {
+          const Icon = item.icon;
+          return (
+            <NavbarIcons
+              icon={Icon}
+              fontSize={item.fontSize || "18px"}
+              onClick={() => {
+                navigate(`${item.location}`);
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );

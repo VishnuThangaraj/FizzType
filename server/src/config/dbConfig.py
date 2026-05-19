@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 MONGO_URI = os.getenv("MONGO_URI")
+DB_NAME = os.getenv("DB_NAME")
 
 client: AsyncIOMotorClient | None = None
 db = None
@@ -16,10 +17,15 @@ async def connect_db():
         client = AsyncIOMotorClient(
             MONGO_URI
         )
-        db = client.IronParadise
+        db = client[DB_NAME]
 
         # check connection
         await client.admin.command("ping")
+
+        # Initialize Beanie
+        from beanie import init_beanie
+        from src.models.User import User
+        await init_beanie(database=db, document_models=[User])
 
         print(">>> MongoDB connected successfully")
     except Exception as e:
