@@ -1,7 +1,10 @@
+import CapsLockDetector from "../components/CapsLockDetector";
 import DurationSelector from "../components/DurationSelector";
 import FilterGroup from "../components/FilterGroup";
 import LanguageSelector from "../components/LanguageSelector";
 import ModeSelector from "../components/ModeSelector";
+import TestReset from "../components/TestReset";
+import TypingScreen from "../components/TypingScreen";
 
 const Typing = () => {
   return (
@@ -11,9 +14,13 @@ const Typing = () => {
         <ModeSelector />
         <DurationSelector />
       </div>
-      <div className="flex-1 flex flex-col items-center justify-center">
+
+      {/* Typing Screen */}
+      <div className="flex-1 flex flex-col items-center justify-center gap-10">
+        <CapsLockDetector />
         <LanguageSelector />
-        <div className="bg-red-400"></div>
+        <TypingScreen />
+        <TestReset />
       </div>
     </div>
   );

@@ -4,4 +4,4 @@ export const initialTypingState: number = 15;
 
 export const initialModeState: TypingModes = "time";
 
-export const initialFilterGroupState: FilterGroup = "none";
+export const initialFilterGroupState: FilterGroup[] = [];
