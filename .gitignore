@@ -2,6 +2,7 @@
 # Dependencies
 # =========================
 node_modules/
+.pnpm-store/
 jspm_packages/
 bower_components/
 
