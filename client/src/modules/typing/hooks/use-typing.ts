@@ -8,7 +8,7 @@ import type { FilterGroup, TypingModes } from "../types/typing.types";
 
 const useTyping = () => {
   const [capsLock, setCapsLock]: [boolean, Dispatch<SetStateAction<boolean>>] =
-    useState(true);
+    useState(false);
 
   const [duration, setDuration]: [number, Dispatch<SetStateAction<number>>] =
     useState(initialTypingState);
@@ -26,11 +26,36 @@ const useTyping = () => {
   // Detect Caps lock
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "CapsLock") {
+        if (!e.repeat) {
+          setCapsLock((prev) => !prev);
+        }
+      } else {
+        setCapsLock(e.getModifierState("CapsLock"));
+      }
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key !== "CapsLock") {
+        setCapsLock(e.getModifierState("CapsLock"));
+      }
+    };
+
+    const handleMouseEvent = (e: MouseEvent) => {
       setCapsLock(e.getModifierState("CapsLock"));
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener("mousedown", handleMouseEvent);
+    window.addEventListener("mousemove", handleMouseEvent, { once: true });
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener("mousedown", handleMouseEvent);
+      window.removeEventListener("mousemove", handleMouseEvent);
+    };
   }, []);
 
   // toggle filter group
