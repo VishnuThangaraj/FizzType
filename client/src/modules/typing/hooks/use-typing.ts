@@ -1,4 +1,4 @@
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 import {
   initialFilterGroupState,
   initialModeState,
@@ -7,9 +7,6 @@ import {
 import type { FilterGroup, TypingModes } from "../types/typing.types";
 
 const useTyping = () => {
-  const [capsLock, setCapsLock]: [boolean, Dispatch<SetStateAction<boolean>>] =
-    useState(false);
-
   const [duration, setDuration]: [number, Dispatch<SetStateAction<number>>] =
     useState(initialTypingState);
 
@@ -23,41 +20,6 @@ const useTyping = () => {
     Dispatch<SetStateAction<FilterGroup[]>>,
   ] = useState(initialFilterGroupState);
 
-  // Detect Caps lock
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "CapsLock") {
-        if (!e.repeat) {
-          setCapsLock((prev) => !prev);
-        }
-      } else {
-        setCapsLock(e.getModifierState("CapsLock"));
-      }
-    };
-
-    const handleKeyUp = (e: KeyboardEvent) => {
-      if (e.key !== "CapsLock") {
-        setCapsLock(e.getModifierState("CapsLock"));
-      }
-    };
-
-    const handleMouseEvent = (e: MouseEvent) => {
-      setCapsLock(e.getModifierState("CapsLock"));
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-    window.addEventListener("mousedown", handleMouseEvent);
-    window.addEventListener("mousemove", handleMouseEvent, { once: true });
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
-      window.removeEventListener("mousedown", handleMouseEvent);
-      window.removeEventListener("mousemove", handleMouseEvent);
-    };
-  }, []);
-
   // toggle filter group
   const toggleFilterGroup = (value: FilterGroup) => {
     if (filterGroup.indexOf(value) === -1) {
@@ -67,14 +29,8 @@ const useTyping = () => {
     }
   };
 
-  // reset the current test
-  const handleTestReset = () => {
-    return "";
-  };
-
   return {
     // state
-    capsLock,
     duration,
     setDuration,
     typingMode,
@@ -82,9 +38,7 @@ const useTyping = () => {
     filterGroup,
     setFilterGroup,
 
-    // function
     toggleFilterGroup,
-    handleTestReset,
   };
 };
 

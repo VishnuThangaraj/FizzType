@@ -1,10 +1,10 @@
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import useTyping from "../hooks/use-typing";
+import { useTypingCaps } from "../hooks/use-typing-caps";
 
 const CapsLockDetector = () => {
-  const { capsLock } = useTyping();
+  const { capsLock } = useTypingCaps();
 
   return (
     <div

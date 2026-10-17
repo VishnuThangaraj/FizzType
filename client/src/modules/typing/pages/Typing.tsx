@@ -3,7 +3,6 @@ import DurationSelector from "../components/DurationSelector";
 import FilterGroup from "../components/FilterGroup";
 import LanguageSelector from "../components/LanguageSelector";
 import ModeSelector from "../components/ModeSelector";
-import TestReset from "../components/TestReset";
 import TypingScreen from "../components/TypingScreen";
 
 const Typing = () => {
@@ -20,7 +19,6 @@ const Typing = () => {
         <CapsLockDetector />
         <LanguageSelector />
         <TypingScreen />
-        <TestReset />
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FooterLinks, FooterSocials } from "./constant/footer.links";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import FooterKeys from "./components/FooterKeys";
 
 import {
@@ -14,9 +13,6 @@ import { appVersion } from "../../../../config/app-config";
 
 const Footer = () => {
   const navigate = useNavigate();
-
-  const [openContact, setOpenContact] = useState(false);
-  const [openSupport, setOpenSupport] = useState(false);
 
   return (
     <div className="flex flex-col w-full gap-5">

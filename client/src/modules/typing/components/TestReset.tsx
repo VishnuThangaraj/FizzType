@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRotateRight } from "@fortawesome/free-solid-svg-icons";
 
-import useTyping from "../hooks/use-typing";
+interface TestResetProps {
+  handleTestReset?: () => void;
+}
 
-const TestReset = () => {
-  const { handleTestReset } = useTyping();
-
+const TestReset = ({ handleTestReset }: TestResetProps) => {
   return (
     <button className="cursor-pointer" onClick={handleTestReset}>
       <FontAwesomeIcon icon={faArrowRotateRight} />
