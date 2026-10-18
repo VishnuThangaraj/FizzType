@@ -15,7 +15,7 @@ const Typing = () => {
       </div>
 
       {/* Typing Screen */}
-      <div className="flex-1 flex flex-col items-center justify-center gap-10">
+      <div className="flex-1 flex flex-col items-center justify-center gap-4 -translate-y-8">
         <CapsLockDetector />
         <LanguageSelector />
         <TypingScreen />
