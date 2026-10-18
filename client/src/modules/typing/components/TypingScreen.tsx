@@ -3,11 +3,13 @@ import { useTypingKeyPress } from "../hooks/use-typing-keypress";
 import TestReset from "./TestReset";
 import FocusOverlay from "./FocusOverlay";
 import { useTheme } from "../../../shared/context";
+import useTyping from "../hooks/use-typing";
 
 const INACTIVITY_TIMEOUT_MS = 15000; // 15 seconds
 
 const TypingScreen = () => {
   const { accent } = useTheme();
+  const { isTypingStarted, setIsTypingStarted } = useTyping();
 
   const [isFocused, setIsFocused] = useState(true);
 
@@ -58,6 +60,15 @@ const TypingScreen = () => {
     }, INACTIVITY_TIMEOUT_MS);
   }, []);
 
+  const onReset = useCallback(() => {
+    hasTypedRef.current = false;
+    setIsTyping(false);
+    setIsFocused(true);
+    resetInactivityTimer();
+    setIsTypingStarted(false);
+    handleTestReset();
+  }, [handleTestReset, resetInactivityTimer, setIsTypingStarted]);
+
   // Track keypress activity and intercept keydown when overlay is in effect
   useEffect(() => {
     const handleKeyDownCapture = (e: KeyboardEvent) => {
@@ -68,6 +79,11 @@ const TypingScreen = () => {
         e.stopImmediatePropagation();
         setIsFocused(true);
         resetInactivityTimer();
+        return;
+      }
+      if (e.key === "Tab") {
+        e.preventDefault();
+        onReset();
         return;
       }
       resetInactivityTimer();
@@ -83,7 +99,7 @@ const TypingScreen = () => {
       }
       window.removeEventListener("keydown", handleKeyDownCapture, true);
     };
-  }, [isFocused, resetInactivityTimer]);
+  }, [isFocused, resetInactivityTimer, onReset]);
 
   const updateCaretPosition = useCallback(() => {
     if (!wordsContainerRef.current) return;
@@ -167,6 +183,7 @@ const TypingScreen = () => {
     }
     hasTypedRef.current = true;
     setIsTyping(true);
+    setIsTypingStarted(true);
     if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
     typingTimeoutRef.current = setTimeout(() => {
       setIsTyping(false);
@@ -175,7 +192,7 @@ const TypingScreen = () => {
     return () => {
       if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
     };
-  }, [currentIndex, wordCount.total]);
+  }, [currentIndex, wordCount.total, setIsTypingStarted]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -196,14 +213,6 @@ const TypingScreen = () => {
       });
     }
   }, [updateDimensionsAndScroll, updateCaretPosition]);
-
-  const onReset = useCallback(() => {
-    hasTypedRef.current = false;
-    setIsTyping(false);
-    setIsFocused(true);
-    resetInactivityTimer();
-    handleTestReset();
-  }, [handleTestReset, resetInactivityTimer]);
 
   return (
     <div className="flex flex-col items-center gap-8 w-full">
@@ -310,7 +319,13 @@ const TypingScreen = () => {
           })}
         </div>
       </div>
-      <TestReset handleTestReset={onReset} />
+      <div
+        className={`transition-opacity duration-200 ${
+          isTypingStarted ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        <TestReset handleTestReset={onReset} />
+      </div>
     </div>
   );
 };
