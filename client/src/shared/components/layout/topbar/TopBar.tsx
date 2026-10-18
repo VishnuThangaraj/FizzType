@@ -1,15 +1,20 @@
+import { useTheme } from "../../../context";
+import Logo from "../../ui/Logo/Logo";
+
 interface TopBarProps {
   pageTitle?: string;
 }
 
 const TopBar = ({ pageTitle }: TopBarProps) => {
+  const { accent } = useTheme();
+
   return (
     <div className="flex gap-5 text-3xl items-end font-bold">
       {/* Logo */}
-      <div className="">fizztype </div>
+      <Logo />
 
       {/* page Title */}
-      <div className="">{pageTitle}</div>
+      <div style={{color:accent}}>{pageTitle}</div>
     </div>
   );
 };

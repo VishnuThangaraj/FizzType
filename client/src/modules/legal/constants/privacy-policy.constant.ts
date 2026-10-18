@@ -1,9 +1,9 @@
 export const privacyPolicy = [
   "Effective date: October 11, 2026",
-  "Last updated: Oct 12, 2026",
-  "Thanks for trusting Monkeytype ('Monkeytype', 'we', 'us', 'our') with your personal information! We take our responsibility to you very seriously, and so this Privacy Statement describes how we handle your data.",
-  "This Privacy Statement applies to all websites we own and operate and to all services we provide (collectively, the 'Services'). So...PLEASE READ THIS PRIVACY STATEMENT CAREFULLY. By using the Services, you are expressly and voluntarily accepting the terms and conditions of this Privacy Statement and our Terms of Service, which include allowing us to process information about you.",
-  "Under this Privacy Statement, we are the data controller responsible for processing your personal information. Our contact information appears at the end of this Privacy Statement.",
+  "Last updated: October 18, 2026",
+  "Thanks for trusting FizzType ('FizzType', 'we', 'us', 'our') with your personal information! We take our responsibility to you very seriously, and this Privacy Policy describes how we handle your data when you visit https://fizztype.vercel.app/ or use our services.",
+  "This Privacy Policy applies to our website, services, and associated open-source tools (collectively, the 'Services'). PLEASE READ THIS PRIVACY POLICY CAREFULLY. By using the Services, you are expressly and voluntarily accepting the terms and conditions of this Privacy Policy and our Terms of Service, which include allowing us to process information about you.",
+  "Under this Privacy Policy, the FizzType project maintainer acts as the data controller responsible for processing your personal information. Our contact information appears at the end of this document.",
 ];
 
 export const privacyPolicyTableOfContents = [
@@ -24,32 +24,41 @@ export const privacyPolicyTableOfContents = [
 ];
 
 export const privacyPolicyDataCollection = [
-  "Email",
-  "Username",
-  "Discord id and discord avatar id (if you provide it)",
-  "Information about each typing test",
-  "Your currently active settings",
-  "How many typing tests you've started and completed",
-  "How long you've been typing on the website",
+  "Account credentials such as email address and username (if you register an account)",
+  "Typing test performance metrics (words per minute, accuracy, raw speed, consistency, and test duration)",
+  "Active website settings and theme preferences (colors, fonts, caret style, sound preferences)",
+  "Test counts and practice history (total tests started, completed, and overall time spent typing)",
+  "Optional profile links or third-party OAuth IDs (if you choose to link authentication providers)",
 ];
 
 export const privacyPolicyHowDataCollect = [
-  "Create an account",
-  "Complete a typing test",
-  "Change settings on the website",
+  "Create an account or sign in to the website",
+  "Complete a typing test or practice session",
+  "Configure or update theme and typing preferences on the website",
+  "Interact with leaderboards or public profile features",
 ];
 
 export const privacyPolicyHowDataUse = [
-  "Allow you to view result history of previous tests you completed",
-  "Save results from tests you take and show you statistics based on them",
-  "Remember your settings",
-  "Display leaderboards",
+  "Enable you to view detailed test history, progress graphs, and performance metrics",
+  "Save and synchronize your active settings, themes, and sound preferences",
+  "Maintain and display public and personal leaderboard rankings",
+  "Protect the integrity of test results by preventing bot abuse, exploits, and fraudulent submissions",
+  "Diagnose technical errors, monitor platform health, and improve site reliability",
 ];
 
 export const privacyPolicyProtectionRights = [
-  "The right to access - You have the right to request Monkeytype for copies of your personal data. We may limit the number of times this request can be made to depending on the size of the request.",
-  'The right to rectification - You have the right to request that Monkeytype correct any information you believe is inaccurate. You also have the right to request Monkeytype to complete the information you believe is incomplete.","The right to erasure - You have the right to request that Monkeytype erase your personal data, under certain conditions. (Hashed data mentioned in the "How will we use your data?" section will not be deleted, as it is essential in preventing the exploitation of the website)',
-  "The right to restrict processing - You have the right to request that Monkeytype restrict the processing of your personal data, under certain conditions.",
-  "The right to object to processing - You have the right to object to Monkeytype processing of your personal data, under certain conditions.",
-  "The right to data portability - You have the right to request that Monkeytype transfer the data that we have collected to another organization, or directly to you, under certain conditions.",
+  "The right to access - You have the right to request copies of your personal data held by FizzType.",
+  "The right to rectification - You have the right to request that FizzType correct any information you believe is inaccurate or complete information you believe is incomplete.",
+  "The right to erasure - You have the right to request that FizzType erase your personal data, under certain conditions (such as account deletion, subject to legitimate fraud prevention and security requirements).",
+  "The right to restrict processing - You have the right to request that FizzType restrict the processing of your personal data, under certain conditions.",
+  "The right to object to processing - You have the right to object to FizzType's processing of your personal data, under certain conditions.",
+  "The right to data portability - You have the right to request that FizzType transfer the data we have collected to another organization, or directly to you, under certain conditions.",
+];
+
+export const privacyPolicyUseCookies = [
+  "Keeping you signed in to your account",
+  "Remembering your active themes, custom colors, and font settings",
+  "Persisting your typing mode configurations and preferences",
+  "Storing local test progress and performance history",
+  "Traffic analysis and performance monitoring to maintain site stability",
 ];

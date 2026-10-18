@@ -262,7 +262,7 @@ const TypingScreen = () => {
               }}
             >
               <div
-                className={`w-[3px] h-full rounded-full ${
+                className={`w-0.75 h-full rounded-full ${
                   !isTyping ? "animate-caret-blink" : ""
                 }`}
                 style={{
