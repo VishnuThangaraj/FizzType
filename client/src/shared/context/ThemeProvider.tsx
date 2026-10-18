@@ -61,7 +61,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     root.style.setProperty("--bg-color", currentTheme.background);
     root.style.setProperty("--primary-color", currentTheme.primary);
     root.style.setProperty("--secondary-color", currentTheme.secondary);
+    root.style.setProperty("--tertiary-color", currentTheme.tertiary);
     root.style.setProperty("--accent-color", currentTheme.accent);
+    root.style.setProperty("--invalid-color", currentTheme.invalid);
   }, [currentTheme]);
 
   const contextValue: ThemeContextType = useMemo(
@@ -73,7 +75,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       primary: currentTheme.primary,
       secondary: currentTheme.secondary,
       seconday: currentTheme.secondary,
+      tertiary: currentTheme.tertiary,
       accent: currentTheme.accent,
+      invalid: currentTheme.invalid,
       availableThemes: Object.values(themes),
       themes,
       setTheme,

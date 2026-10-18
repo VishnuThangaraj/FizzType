@@ -10,10 +10,11 @@ import type { TypingCount } from "../types/typing.types";
 import { initialTypingCountState } from "../state/initial-typing-state";
 
 import { sampleWords } from "../../../shared/data/sample-words.data";
+import { useTheme } from "../../../shared/context";
 
-export const useTypingKeyPress = () => {
-  const valid = "text-green-300";
-  const invalid = "text-orange-500";
+export const useTypingKeyPress = (isFocused: boolean = true) => {
+  const { tertiary, invalid } = useTheme();
+  const valid = tertiary;
 
   const letterRefs = useRef(new Map<string, HTMLSpanElement>());
 
@@ -79,6 +80,8 @@ export const useTypingKeyPress = () => {
   // Detect keypress
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isFocused) return;
+
       if (/^[a-z]$/.test(e.key)) {
         setCurrentKey(e.key);
         handleUpdateKeyPress(e.key);
@@ -96,7 +99,7 @@ export const useTypingKeyPress = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [handleUpdateKeyPress, handleBackspacePress, handleSpacePress]);
+  }, [isFocused, handleUpdateKeyPress, handleBackspacePress, handleSpacePress]);
 
   // reset the current test
   const handleTestReset = useCallback(() => {

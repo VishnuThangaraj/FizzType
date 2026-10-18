@@ -3,7 +3,9 @@ export interface ThemeColors {
   primary: string;
   secondary: string;
   seconday?: string; // alias to prevent errors from typos
+  tertiary: string;
   accent: string;
+  invalid: string;
 }
 
 export interface Theme {
@@ -13,7 +15,9 @@ export interface Theme {
   primary: string;
   secondary: string;
   seconday?: string; // alias to prevent errors from typos
+  tertiary: string;
   accent: string;
+  invalid: string;
 }
 
 export interface ThemeContextType {
@@ -24,7 +28,9 @@ export interface ThemeContextType {
   primary: string;
   secondary: string;
   seconday: string;
+  tertiary: string;
   accent: string;
+  invalid: string;
   availableThemes: Theme[];
   themes: Record<string, Theme>;
   setTheme: (themeOrId: string | Theme) => void;

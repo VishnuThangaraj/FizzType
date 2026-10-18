@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@theme {
+  --color-theme-bg: var(--bg-color);
+  --color-theme-primary: var(--primary-color);
+  --color-theme-secondary: var(--secondary-color);
+  --color-theme-tertiary: var(--tertiary-color);
+  --color-theme-accent: var(--accent-color);
+  --color-theme-invalid: var(--invalid-color);
+}
+
+@keyframes caret-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-caret-blink {
+  animation: caret-blink 1s ease-in-out infinite;
+}
