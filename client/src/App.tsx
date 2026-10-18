@@ -26,7 +26,7 @@ const MainLayout = ({ elementStyle }: StyleElementProps) => {
       style={elementStyle}
     >
       <Navbar />
-      <div key="content-holder" className="flex-1 flex flex-col justify-center">
+      <div key="content-holder" className="flex-1 flex flex-col">
         <Outlet />
       </div>
       <div

@@ -10,9 +10,10 @@ const Typing = () => {
   const { isTypingStarted } = useTyping();
 
   return (
-    <div className="relative flex-1 flex flex-col justify-center gap-6 pb-14">
+    <div className="relative flex-1 flex flex-col">
+      {/* Top Selectors Bar */}
       <div
-        className={`flex gap-8 items-center justify-center transition-opacity duration-200 ${
+        className={`flex gap-8 items-center justify-center pt-8 pb-4 transition-opacity duration-200 ${
           isTypingStarted ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
@@ -21,8 +22,8 @@ const Typing = () => {
         <DurationSelector />
       </div>
 
-      {/* Typing Screen */}
-      <div className="flex flex-col items-center gap-4">
+
+      <div className="flex-1 flex flex-col items-center justify-center gap-4 pb-40">
         <div
           className={`flex flex-col items-center gap-4 transition-opacity duration-200 ${
             isTypingStarted ? "opacity-0 pointer-events-none" : "opacity-100"
