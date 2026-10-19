@@ -31,21 +31,31 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     return "default";
   });
 
+  const [previewThemeId, setPreviewThemeId] = useState<string | null>(null);
+
+  const activeThemeId = previewThemeId || themeId;
+
   const currentTheme = useMemo(() => {
-    return themes[themeId] || defaultTheme;
-  }, [themeId]);
+    return themes[activeThemeId] || defaultTheme;
+  }, [activeThemeId]);
+
+  const previewTheme = useCallback((themeOrId: string | Theme | null) => {
+    if (!themeOrId) {
+      setPreviewThemeId(null);
+      return;
+    }
+    const id = typeof themeOrId === "string" ? themeOrId : themeOrId.id;
+    if (themes[id]) {
+      setPreviewThemeId(id);
+    }
+  }, []);
 
   const setTheme = useCallback((themeOrId: string | Theme) => {
-    if (typeof themeOrId === "string") {
-      if (themes[themeOrId]) {
-        setCurrentThemeId(themeOrId);
-        localStorage.setItem(THEME_STORAGE_KEY, themeOrId);
-      }
-    } else if (themeOrId && typeof themeOrId === "object" && themeOrId.id) {
-      if (themes[themeOrId.id]) {
-        setCurrentThemeId(themeOrId.id);
-        localStorage.setItem(THEME_STORAGE_KEY, themeOrId.id);
-      }
+    const id = typeof themeOrId === "string" ? themeOrId : themeOrId?.id;
+    if (id && themes[id]) {
+      setPreviewThemeId(null);
+      setCurrentThemeId(id);
+      localStorage.setItem(THEME_STORAGE_KEY, id);
     }
   }, []);
 
@@ -66,10 +76,23 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     root.style.setProperty("--invalid-color", currentTheme.invalid);
   }, [currentTheme]);
 
+  const uniqueAvailableThemes = useMemo(() => {
+    const list = Object.values(themes).filter((t) => t.id !== "default");
+    const seen = new Set<string>();
+    return list
+      .filter((t) => {
+        const name = t.name.toLowerCase();
+        if (seen.has(name)) return false;
+        seen.add(name);
+        return true;
+      })
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, []);
+
   const contextValue: ThemeContextType = useMemo(
     () => ({
       theme: currentTheme,
-      themeId: currentTheme.id,
+      themeId: themeId,
       themeName: currentTheme.name,
       background: currentTheme.background,
       primary: currentTheme.primary,
@@ -78,12 +101,13 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       tertiary: currentTheme.tertiary,
       accent: currentTheme.accent,
       invalid: currentTheme.invalid,
-      availableThemes: Object.values(themes),
+      availableThemes: uniqueAvailableThemes,
       themes,
       setTheme,
       setThemeId,
+      previewTheme,
     }),
-    [currentTheme, setTheme, setThemeId],
+    [currentTheme, themeId, setTheme, setThemeId, previewTheme, uniqueAvailableThemes],
   );
 
   return (

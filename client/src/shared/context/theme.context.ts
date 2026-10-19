@@ -17,6 +17,7 @@ export const ThemeContext = createContext<ThemeContextType>({
   themes,
   setTheme: () => {},
   setThemeId: () => {},
+  previewTheme: () => {},
 });
 
 export const useTheme = (): ThemeContextType => {

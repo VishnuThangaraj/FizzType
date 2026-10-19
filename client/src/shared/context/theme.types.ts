@@ -35,4 +35,5 @@ export interface ThemeContextType {
   themes: Record<string, Theme>;
   setTheme: (themeOrId: string | Theme) => void;
   setThemeId: (id: string) => void;
+  previewTheme: (themeOrId: string | Theme | null) => void;
 }

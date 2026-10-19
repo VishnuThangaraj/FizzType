@@ -80,6 +80,16 @@ export const useTypingKeyPress = (isFocused: boolean = true) => {
   // Detect keypress
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
       if (!isFocused) return;
 
       if (/^[a-z]$/.test(e.key)) {

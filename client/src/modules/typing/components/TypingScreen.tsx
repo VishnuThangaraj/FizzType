@@ -72,6 +72,16 @@ const TypingScreen = () => {
   // Track keypress activity and intercept keydown when overlay is in effect
   useEffect(() => {
     const handleKeyDownCapture = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
       if (!isFocused) {
         // Overlay is visible: dismiss it without registering the key as typing
         e.preventDefault();

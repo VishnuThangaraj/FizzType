@@ -11,20 +11,38 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { appVersion } from "../../../../config/app-config";
 import { useTheme } from "../../../context";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ContactModal from "../../ui/modal/ContactModal";
 import SupportModal from "../../ui/modal/SupportModal";
 import ChangeLogsModal from "../../ui/modal/ChangeLogsModal";
+import ThemeSwitchModal from "../../ui/modal/ThemeSwitchModal";
 
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { accent, primary, tertiary } = useTheme();
+  const { themeName, accent, primary, tertiary } = useTheme();
 
+  const [openTheme, setOpenTheme] = useState(false);
   const [openSupport, setOpenSupport] = useState(false);
   const [openContact, setOpenContact] = useState(false);
   const [openVersion, setOpenVersion] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        (e.ctrlKey || e.metaKey) &&
+        e.shiftKey &&
+        e.key.toLowerCase() === "p"
+      ) {
+        e.preventDefault();
+        setOpenTheme((prev) => !prev);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const getItemColor = (isActive: boolean, isHovered: boolean) => {
     if (isActive) return accent;
@@ -112,9 +130,10 @@ const Footer = () => {
             style={{ color: getItemColor(false, hoveredItem === "theme") }}
             onMouseEnter={() => setHoveredItem("theme")}
             onMouseLeave={() => setHoveredItem(null)}
+            onClick={() => setOpenTheme(true)}
           >
             <FontAwesomeIcon icon={faPalette} />
-            <div>serika dark</div>
+            <div className="lowercase">{themeName}</div>
           </button>
 
           {/* App Version */}
@@ -142,6 +161,9 @@ const Footer = () => {
         open={openVersion}
         onClose={() => setOpenVersion(false)}
       />
+
+      {/* Theme Modal */}
+      <ThemeSwitchModal open={openTheme} onClose={() => setOpenTheme(false)} />
     </div>
   );
 };
