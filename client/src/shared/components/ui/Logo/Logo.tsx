@@ -13,10 +13,14 @@ const Logo = ({ size, className = "" }: LogoProps) => {
 
   return (
     <div
-      className={`cursor-pointer flex items-center gap-2.5 select-none ${className}`}
+      className={`cursor-pointer flex items-end gap-2.5 select-none ${className}`}
       onClick={() => navigate("/")}
     >
-      <BrandIcon size={size} color={accent} className="h-8 w-auto shrink-0" />
+      <BrandIcon
+        size={size}
+        color={accent}
+        className={size !== undefined ? "w-auto shrink-0 self-end" : "h-8 w-auto shrink-0 self-end"}
+      />
       <div className="relative flex items-baseline font-medium tracking-wide leading-none">
         <span className="text-[30px]" style={{ color: tertiary }}>
           fi

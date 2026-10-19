@@ -12,12 +12,14 @@ import {
 import { appVersion } from "../../../../config/app-config";
 import { useTheme } from "../../../context";
 import { useState } from "react";
+import ContactModal from "../../ui/modal/ContactModal";
 
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { accent, primary, tertiary } = useTheme();
 
+  const [openContact, setOpenContact] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   const getItemColor = (isActive: boolean, isHovered: boolean) => {
@@ -36,6 +38,7 @@ const Footer = () => {
           <button
             className="flex items-center gap-1 cursor-pointer transition-colors"
             style={{ color: getItemColor(false, hoveredItem === "contact") }}
+            onClick={() => setOpenContact(true)}
             onMouseEnter={() => setHoveredItem("contact")}
             onMouseLeave={() => setHoveredItem(null)}
           >
@@ -121,6 +124,9 @@ const Footer = () => {
           </button>
         </div>
       </div>
+
+      {/* Contact Modal */}
+      <ContactModal open={openContact} onClose={() => setOpenContact(false)} />
     </div>
   );
 };

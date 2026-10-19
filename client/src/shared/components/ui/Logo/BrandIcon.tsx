@@ -16,7 +16,7 @@ export default function BrandIcon({
   letterColor = "currentColor",
   boldness = 4,
   frameBoldness = 4,
-  className = "h-8 w-auto shrink-0 text-main transition-colors",
+  className,
   style,
   ...props
 }: BrandIconProps) {
@@ -24,14 +24,38 @@ export default function BrandIcon({
   const computedWidth =
     width ?? (typeof size === "number" ? (size * 300) / 180 : undefined);
 
+  const defaultClasses =
+    size !== undefined || height !== undefined
+      ? "w-auto shrink-0"
+      : "h-8 w-auto shrink-0 text-main transition-colors";
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-680 -1030 300 180"
       width={computedWidth}
       height={computedHeight}
-      className={`shrink-0 ${className}`}
-      style={{ aspectRatio: "300 / 180", ...style }}
+      className={`shrink-0 ${className ?? defaultClasses}`}
+      style={{
+        aspectRatio: "300 / 180",
+        ...(computedHeight !== undefined
+          ? {
+              height:
+                typeof computedHeight === "number"
+                  ? `${computedHeight}px`
+                  : computedHeight,
+            }
+          : {}),
+        ...(computedWidth !== undefined
+          ? {
+              width:
+                typeof computedWidth === "number"
+                  ? `${computedWidth}px`
+                  : computedWidth,
+            }
+          : {}),
+        ...style,
+      }}
       role="img"
       aria-label="BrandIcon"
       {...props}

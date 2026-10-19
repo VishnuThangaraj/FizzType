@@ -24,7 +24,7 @@ export const FooterSocials = [
   {
     name: "twitter",
     icon: faTwitter,
-    url: "https://x.com/VishnuThangaraj",
+    url: "https://x.com/im_vishnu_t",
   },
 ];
 
