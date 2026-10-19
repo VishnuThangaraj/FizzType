@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faEnvelope,
   faCheck,
   faCopy,
   faCodeBranch,
@@ -26,7 +27,7 @@ interface ContactModalProps {
 
 const ContactModal = ({ open, onClose }: ContactModalProps) => {
   const navigate = useNavigate();
-  const { accent, primary, tertiary, secondary } = useTheme();
+  const { accent, primary, tertiary, secondary, background } = useTheme();
   const [copied, setCopied] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
@@ -54,15 +55,17 @@ const ContactModal = ({ open, onClose }: ContactModalProps) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50  p-4 transition-opacity duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 transition-opacity duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-3xl rounded-xl p-6 shadow-2xl flex flex-col gap-6 border"
+        className="relative w-full max-w-3xl rounded-2xl p-6 shadow-2xl flex flex-col gap-6 border-4 max-h-[90vh] overflow-y-auto no-scrollbar scrollbar-none"
         style={{
-          backgroundColor: secondary,
-          borderColor: `${primary}40`,
+          backgroundColor: background,
+          borderColor: secondary,
           color: tertiary,
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -72,6 +75,7 @@ const ContactModal = ({ open, onClose }: ContactModalProps) => {
             className="flex items-center gap-2.5 text-2xl font-medium"
             style={{ color: primary }}
           >
+            <FontAwesomeIcon icon={faEnvelope} />
             <span>Contact</span>
           </div>
         </div>

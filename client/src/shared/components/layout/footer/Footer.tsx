@@ -13,13 +13,17 @@ import { appVersion } from "../../../../config/app-config";
 import { useTheme } from "../../../context";
 import { useState } from "react";
 import ContactModal from "../../ui/modal/ContactModal";
+import SupportModal from "../../ui/modal/SupportModal";
+import ChangeLogsModal from "../../ui/modal/ChangeLogsModal";
 
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { accent, primary, tertiary } = useTheme();
 
+  const [openSupport, setOpenSupport] = useState(false);
   const [openContact, setOpenContact] = useState(false);
+  const [openVersion, setOpenVersion] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   const getItemColor = (isActive: boolean, isHovered: boolean) => {
@@ -50,6 +54,7 @@ const Footer = () => {
           <button
             className="flex items-center gap-1 cursor-pointer transition-colors"
             style={{ color: getItemColor(false, hoveredItem === "support") }}
+            onClick={() => setOpenSupport(true)}
             onMouseEnter={() => setHoveredItem("support")}
             onMouseLeave={() => setHoveredItem(null)}
           >
@@ -118,6 +123,7 @@ const Footer = () => {
             style={{ color: getItemColor(false, hoveredItem === "version") }}
             onMouseEnter={() => setHoveredItem("version")}
             onMouseLeave={() => setHoveredItem(null)}
+            onClick={() => setOpenVersion(true)}
           >
             <FontAwesomeIcon icon={faCodeBranch} />
             <div>v{appVersion}</div>
@@ -127,6 +133,15 @@ const Footer = () => {
 
       {/* Contact Modal */}
       <ContactModal open={openContact} onClose={() => setOpenContact(false)} />
+
+      {/* Support Modal */}
+      <SupportModal open={openSupport} onClose={() => setOpenSupport(false)} />
+
+      {/* Version Modal */}
+      <ChangeLogsModal
+        open={openVersion}
+        onClose={() => setOpenVersion(false)}
+      />
     </div>
   );
 };
